@@ -1,0 +1,31 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-item *ngIf="token">
+    <ion-avatar item-start>
+        <img src="//{{token.payload.iss}}/dnnimagehandler.ashx?mode=profilepic&userid={{token?.userId}}&w=200&h=200">
+    </ion-avatar>
+    <h2>{{token.displayName}}</h2>
+    </ion-item>
+
+    <ion-list>
+      <button ion-item (click)="onLoad(loginPage)" *ngIf="!isAuthenticated">
+        <ion-icon name="log-in"></ion-icon>
+        Anmelden
+      </button>
+      <button ion-item (click)="onLogout()" *ngIf="isAuthenticated">
+        <ion-icon name="log-out"></ion-icon>
+        Abmelden
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

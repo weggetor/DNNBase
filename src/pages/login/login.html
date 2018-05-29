@@ -1,0 +1,109 @@
+<!-- You can change your background image here -->
+<ion-content style="background-image: url('assets/imgs/background.jpg');background-position: cover;">
+
+	<!-- Overlay, slightly dulls the background image -->
+	<div class="overlay"></div>
+
+	<!-- logo -->
+	<img class="logo" src="assets/imgs/logo.png">
+
+	<!-- Segment buttons -->
+	<ion-segment [(ngModel)]="login_type" color="light" padding class="switcher">
+
+        <ion-segment-button value="login" default>Login</ion-segment-button>
+
+        <ion-segment-button value="register">Register</ion-segment-button>
+
+    </ion-segment>
+
+    <!-- switch wrapper -->
+    <div [ngSwitch]="login_type">
+
+    	<!-- This content will show if the segement is set to 'login' -->
+	    <div *ngSwitchCase="'login'" >
+
+	    	<!-- Calls the login function once when the submit button is clicked -->
+		    <form [formGroup]="login_form" (ngSubmit)="login()" padding>
+
+		    	<!-- email input -->
+			    <ion-item class="input-item">
+			    	<ion-label>
+			    		<ion-icon name="md-person"></ion-icon> Benutzer
+		    		</ion-label>
+			    	<ion-input formControlName="username" type="text"></ion-input>
+			    </ion-item>
+
+			    <!-- password input -->
+			    <ion-item class="input-item">
+			    	<ion-label>
+			    		<ion-icon name="md-lock"></ion-icon> Passwort
+			    	</ion-label>
+			    	<ion-input formControlName="password" type="password"></ion-input>
+			    </ion-item>
+
+			    <!-- submit button, is disabled when the form is not valid -->
+		        <button class="login-button" ion-button icon-start type="submit" [disabled]="!login_form.valid">
+		      		<ion-icon name="log-in"></ion-icon>
+		      		<span>Login</span>
+	      		</button>
+
+	      		<p class="forgot-password" (tap)="forgotPassword()">
+		        	Passwort vergessen ?
+		        </p>
+		    </form>
+
+	    </div>
+
+	    <!-- This content will show if the segement is set to 'register' -->
+	    <div *ngSwitchCase="'register'">
+
+	    	<!-- Calls the register function once when the submit button is clicked -->
+		    <form [formGroup]="register_form" (ngSubmit)="register()" padding>
+
+                <!-- username input -->
+			    <ion-item class="input-item">
+			    	<ion-label>
+			    		<ion-icon name="md-person"></ion-icon> Benutzer
+		    		</ion-label>
+			    	<ion-input formControlName="username" type="text"></ion-input>
+			    </ion-item>
+
+                
+                <!-- email input -->
+			    <ion-item class="input-item">
+			    	<ion-label>
+			    		<ion-icon name="md-at"></ion-icon> Email
+		    		</ion-label>
+			    	<ion-input formControlName="email" type="email"></ion-input>
+			    </ion-item>
+
+			    <!-- password input -->
+			    <div style="position:relative;">
+				    <ion-item class="input-item">
+
+				    	<!-- show/hide password icon, call showHidePass function -->
+				    	
+				    	<ion-label>
+				    		<ion-icon name="md-lock"></ion-icon> Passwort
+				    	</ion-label>
+				    	<ion-input formControlName="password" type="{{password_input_type}}"></ion-input>
+				    </ion-item>
+
+				    <div style="position:absolute;right:10px;width:20px;top:12px;color:#aaa;font-size:20px;" (tap)="showHidePass()">
+			    		<ion-icon name="{{show_hide_icon}}"></ion-icon>
+		    		</div>
+			    </div>
+			   
+			    <!-- submit button, is disabled when the form is not valid -->
+		        <button class="register-button" color="secondary" ion-button icon-start type="submit" [disabled]="!register_form.valid">
+		      		<ion-icon name="log-in"></ion-icon>
+		      		<span>Registrieren</span>
+		        </button>
+
+		    </form>
+
+	    </div>
+
+    </div>
+
+</ion-content>

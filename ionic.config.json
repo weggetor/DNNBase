@@ -1,0 +1,8 @@
+{
+  "name": "dnnbase",
+  "app_id": "e9cea85b",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

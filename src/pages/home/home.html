@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Ionic Menu Starter</h3>
+
+  <p>User: {{token?.displayName}}</p>
+  <p>UserID: {{token?.userId}}</p>
+  <p>Roles: {{token?.payload.role}}</p>
+  <p>ISS: {{token?.payload.iss}}</p>
+  <p>Expires: {{expireDate}}</p>
+  <p>Token since: {{tokenDate}}</p>
+  <button ion-button secondary menuToggle>Toggle Menu</button>
+</ion-content>
